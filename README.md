@@ -1,4 +1,3 @@
-# git-lint-diif
 Git Lint Diff
 =============
 
