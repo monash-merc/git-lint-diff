@@ -126,7 +126,7 @@ def git_changed_files(revision=None):
     if revision:
         files = subprocess.check_output(
             [GIT, "diff", "--name-only", revision])
-        return [filename for filename in files.split(('\n').encode())
+        return [filename for filename in files.splitlines()
                 if filename]
     else:
         files = subprocess.check_output(
@@ -134,7 +134,7 @@ def git_changed_files(revision=None):
         cached_files = subprocess.check_output(
             [GIT, "diff", "--name-only", "--cached"])
         return [filename for filename
-                in set(files.split(('\n').encode())) | set(cached_files.split(('\n').encode()))
+                in set(files.splitlines()) | set(cached_files.splitlines())
                 if filename]
 
 
