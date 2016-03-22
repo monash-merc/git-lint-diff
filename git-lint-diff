@@ -173,7 +173,7 @@ def check_files(executable, line_match, revision=None,
     lint_output = lint(executable)
 
     for line in lint_output.split(('\n').encode()):
-        line_details = line_match.match(line)
+        line_details = line_match.match(line.encode())
         if not line or not line_details:
             print(line)
             continue
