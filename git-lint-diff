@@ -199,7 +199,7 @@ def check_files(executable, line_match, revision=None,
             skipped_lines += 1
 
     if skipped_lines > 0:
-        print("....Skipped {} lines.....").format(skipped_lines)
+        print("....Skipped %s lines.....") % skipped_lines
     sys.exit(exit_status)
 
 
