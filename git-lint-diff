@@ -172,8 +172,8 @@ def check_files(executable, line_match, revision=None,
     skipped_lines = 0
     lint_output = lint(executable)
 
-    for line in lint_output.split(('\n').encode()):
-        line_details = line_match.match(line.encode())
+    for line in lint_output.splitlines():
+        line_details = line_match.match(line)
         if not line or not line_details:
             print(line)
             continue
