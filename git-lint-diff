@@ -182,11 +182,11 @@ def check_files(executable, line_match, revision=None,
             continue
         filename, lineno = line_details.groups()
 
-        if not all(map(lambda x: x.match(filename),
+        if not all(map(lambda x: x.match(filename.encode()),
                        WHITE_LIST)):
             log.info('SKIPPING %s' % filename)
             continue
-        if any(map(lambda x: x.match(filename),
+        if any(map(lambda x: x.match(filename.encode()),
                    BLACK_LIST)):
             log.info('SKIPPING %s' % filename)
             continue
