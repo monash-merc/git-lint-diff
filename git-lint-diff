@@ -36,9 +36,9 @@ from functools import wraps
 log = logging.getLogger(__file__)
 
 line_matchers = {
-    'flake8': re.compile(r'^([^\s]+):([\d]+):[\d]+: '),
-    'puppet-lint': re.compile(r'^([^\s]+) - .* ([\d]+)$'),
-    'jshint': re.compile(r'^([^\s]+): line ([\d]+),.*$'),
+    'flake8': re.compile(b'^([^\s]+):([\d]+):[\d]+: '),
+    'puppet-lint': re.compile(b'^([^\s]+) - .* ([\d]+)$'),
+    'jshint': re.compile(b'^([^\s]+): line ([\d]+),.*$'),
 }
 
 executables = {
@@ -65,6 +65,7 @@ def which(name, flags=os.X_OK):
                 result.append(pext)
     return result
 
+
 try:
     GIT = which('git')[0]
 except:
@@ -80,6 +81,7 @@ def simple_cache(f):
         if key not in cache:
             cache[key] = f(*args, **kwargs)
         return cache[key]
+
     return wrapper
 
 
@@ -160,6 +162,7 @@ class AnyLine():
     def __contains__(self, x):
         return True
 
+
 WHITE_LIST = [re.compile(r'.*')]
 BLACK_LIST = []
 
@@ -196,7 +199,7 @@ def check_files(executable, line_match, revision=None,
             skipped_lines += 1
 
     if skipped_lines > 0:
-        print ("....Skipped %s lines.....") % skipped_lines
+        print("....Skipped {} lines.....").format(skipped_lines)
     sys.exit(exit_status)
 
 
